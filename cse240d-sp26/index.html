@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>CSE 240D</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div id="intro">
+        <h2> CSE 240D: System Design for Machine Intelligence (Spring 2026)</h2>
+        <br>
+        <h3>Instructor: <a href="http://cseweb.ucsd.edu/%7Ehadi">Hadi Esmaeilzadeh</a></h3>
+        <br>
+        <h5>Email: hadi [AT] ucsd [DOT] edu</h5>
+        <h5>Office: CSE 3228 </h5>
+        <h5>Office hours: by appointment</h5>
+        <h5>Class time: MW 6:30&ndash;7:50 PM, EBU3B 4140</h5>
+        <h5><br></h5>
+        <h5>TA: Hanyang Xu</h5>
+        <h5>Email: hax032 [AT] ucsd [DOT] edu</h5>
+        <h5>Office: CSE 3254</h5>
+        <h5>Office hours: by appointment</h5>
+      </div>
+      <div id="navbar">
+        <ul class="menu">
+          <li><a href="index.html">Syllabus</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="presentation.html">Presentation</a></li>
+          <li><a href="critique.html">Critique</a></li>
+          <li><a href="project.html">Project</a></li>
+        </ul>
+      </div>
+      <!-- Main Content -->
+      <div id="leftcolumn">
+        <h1>Course Description</h1>
+        <p>
+          Large language models and generative AI are transforming every domain, but their impact depends on building systems that can train and serve these models efficiently.
+          This course provides a holistic view of LLM acceleration, showing how algorithmic choices ripple through models, training, inference, hardware, compilers, and serving systems.
+        </p>
+        <p>
+          The course is organized in three parts.
+          First, we build up the model: starting from the end of Dennard scaling and the case for domain-specific acceleration, we cover scaling laws, optimization, learning paradigms and alignment, the transformer architecture and diffusion models, advanced model capabilities (mixture of experts, multimodal, reasoning), and retrieval-augmented and agentic systems.
+          Second, we turn to training and efficiency: distributed training across thousands of GPUs, efficient inference architectures (speculative decoding, grouped-query attention, state-space models), and model compression through quantization, low-rank adaptation, and sparsity.
+          Third, we study the systems that run it all: GPU architecture and kernel optimizations (FlashAttention), domain-specific accelerators (TPUs, Groq, processing-in-memory), compiler optimizations (TVM, MLIR), LLM serving software (continuous batching, structured generation), KV cache management and prefill-decode disaggregation, and network infrastructure including DPUs.
+          We close with a lookback on the quantitative laws and design philosophies that tie the course together.
+        </p>
+        <p>
+          Throughout the course, you will develop both foundational understanding and familiarity with state-of-the-art approaches across these topics.
+          You will read and critically analyze research papers, identify strengths and weaknesses of proposed techniques, and are expected to engage in class discussions with critical judgment.
+          A course project will give you hands-on experience applying these ideas to a research problem of your choosing.
+        </p>
+        <h1>Format</h1>
+        <p>
+          The course will be a combination of lectures, student presentations, and a project.
+          For more information on the project, please refer to the <a href="project.html">project</a> page.
+        </p>
+        <h1>Prerequisites</h1>
+        <p>
+          This is a research-oriented advanced course for graduate students.
+          Students are expected to have background in a) computer architecture, b) deep learning, and c) software engineering (proficiency in Python or C/C++).
+          The course is open to both PhD and MS students.
+          Undergraduate students require permission from the instructor.
+        </p>
+        <h1>Evaluation</h1>
+        <p>
+          Students will be evaluated based on the following rubric.
+          For the details on each item please refer to its corresponding page.
+        </p>
+        <table border="1" width="100%">
+          <tbody>
+            <tr>
+              <td>Critiques</td>
+              <td>30%</td>
+            </tr>
+            <tr>
+              <td>Class Presentations and Participation</td>
+              <td>30%</td>
+            </tr>
+            <tr>
+              <td>Projects: Proposal, Presentation, Report, and Implementation</td>
+              <td>40% (10% each)</td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <h1>Attendance</h1>
+        <p>
+          Attendance is required.
+          The TA will hold a sign-up sheet at every class.
+          If you need to miss a class, you must communicate this via email to the TA <b>at least one day in advance</b>.
+        </p>
+        <h1>Communication</h1>
+        <p>
+          All course communication will be through email.
+          Please direct questions to the TA (hax032 [AT] ucsd [DOT] edu).
+        </p>
+        <h1>Course Material</h1>
+        <p>
+          There is no required textbook.
+          All relevant materials will be made available online.
+        </p>
+        <h1>Academic Honesty and AI Usage</h1>
+        <p>
+          Students are expected to abide by the UC San Diego Honor Code.
+          Honest and ethical behavior is expected at all times.
+          All incidents of suspected dishonesty will be reported to and handled by the office of student affairs.
+          You will have to do all assignments individually unless explicitly told otherwise.
+          You may discuss with classmates but you may not copy any solution (or any part of a solution).
+        </p>
+        <p>
+          There are no restrictions on the use of AI tools (including LLMs) in this course.
+          You are welcome to use them for critiques, presentations, projects, and any other coursework.
+          That said, the goal of this course is for you to build deep expertise in this field.
+          If you delegate your learning entirely to AI, the only one missing out is you.
+        </p>
+      </div>
+      <!-- Footer -->
+      <div id="footer"> Last update: March 2026 </div>
+    </div>
+  </body>
+</html>
