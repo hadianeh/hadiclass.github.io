@@ -53,8 +53,56 @@
         </p>
         <h1>Project Ideas</h1>
         <p>
-          We will provide a list of research ideas spanning architecture, compiler, and system levels.
-          You may also propose your own unique project idea; original proposals are encouraged and may qualify for extra credit.
+          Below is a list of project ideas. You may also propose your own unique project idea; original proposals are encouraged and may qualify for extra credit.
+        </p>
+        <h2>P1 &mdash; Mixed-Precision Systolic Array in RTL</h2>
+        <p>
+          Modify the <a href="https://github.com/actlab-genesys/GeneSys">GeneSys</a> systolic array to support FP16, BF16, and FP8 multiply with FP32 accumulate.
+          INT8 multiply-accumulate is already provided; students will implement the floating-point datapaths using open-source ALU IPs (<a href="https://github.com/ucb-bar/berkeley-hardfloat">Berkeley HardFloat</a>, <a href="https://github.com/pulp-platform/fpnew">PULP FPnew</a>) as a starting point.
+          Deliverable: RTL with testbenches passing simulation in Vivado or Verilator.
+        </p>
+        <h2>P2 &mdash; RISC-V Vector Extension Alongside a Systolic Array</h2>
+        <p>
+          Integrate the <a href="https://github.com/pulp-platform/ara">ARA</a> RVV 1.0 vector core with the <a href="https://github.com/actlab-genesys/GeneSys">GeneSys</a> systolic array as a unified compute unit sharing a common memory space.
+          GeneSys runs GEMM layers, then ARA handles the non-GEMM vector ops (softmax, RMSNorm, RoPE, SiLU, attention masking).
+          ARA serves purely as a compute datapath &mdash; a separate control logic sits above both ARA and the systolic array to orchestrate execution.
+          Deliverable: RTL with testbenches passing simulation in Vivado or Verilator.
+        </p>
+        <h2>P3 &mdash; Cycle-Level Performance Simulator for Systolic + Vector</h2>
+        <p>
+          Build an event-driven cycle-level simulator in C++ modeling a systolic array, vector core, and memory hierarchy.
+          Inputs are an analytical model of components and their connectivity based on the architecture design, plus a static schedule.
+          The simulator should predict tokens/sec and time-to-first-token (TTFT) for a given LLM configuration.
+          Calibrate against published accelerator numbers (TPU, Gemmini, H100) within &plusmn;20%.
+          The simulator should run a full Llama-3-8B forward pass in under 10 minutes and produce Pareto frontiers across array size, SRAM, HBM bandwidth, and vector width for both FFN-dominated and attention-dominated regimes.
+        </p>
+        <h2>P4 &mdash; System-Scale Parallelism Simulator for LLM Serving</h2>
+        <p>
+          Extend <a href="https://github.com/astra-sim/astra-sim">Astra-sim</a> to support LLM serving workloads.
+          Astra-sim does not natively model inference request scheduling, disaggregated prefill/decode, chunked prefill, or variable context length &mdash; students will add these capabilities.
+          Model TP, PP, EP, and DP-attention across a cluster of abstracted accelerators.
+          Calibrate against published vLLM/SGLang numbers.
+          Then pick one of the following design questions to investigate:
+          (1) TP-versus-PP crossover on 70B models,
+          (2) disaggregated-versus-colocated goodput under realistic traces, or
+          (3) whether Attention-FFN disaggregation (GPU+LPU) beats homogeneous GPU on tokens/sec/W for trillion-parameter MoE.
+        </p>
+        <h2>P5 &mdash; Unified Systolic/Vector Compute Fabric in RTL</h2>
+        <p>
+          Modify the <a href="https://github.com/actlab-genesys/GeneSys">GeneSys</a> systolic array to support two modes: systolic mode for dense GEMM (weights propagate, 2D spatial reuse) and vector mode for elementwise ops (per-lane independent execution from a shared register file).
+          Design mode-switching logic and a shared scratchpad serving both modes.
+          Characterize the area and performance cost of unification versus separate blocks (P1 + P2): how much does the mode-switch logic cost, and how much utilization do you recover by repurposing idle systolic MACs for vector work during softmax/RMSNorm phases?
+          Deliverable: RTL with testbenches passing simulation in Vivado or Verilator.
+        </p>
+        <h2>P6 &mdash; Sparse / Irregular-Ops Core in RTL</h2>
+        <p>
+          Design an RTL block that accelerates four specific operations:
+          (1) transpose via banked-memory design for conflict-free access,
+          (2) tree reduction via segmented reduction trees for MoE combine,
+          (3) gather for paged KV cache fetching, and
+          (4) scatter with conflict resolution for MoE dispatch.
+          Characterize on MoE dispatch, paged KV cache gather, and attention layout transforms, measuring what fraction of end-to-end MoE decode time the block eliminates versus a vector-core baseline.
+          Deliverable: RTL with testbenches passing simulation in Vivado or Verilator.
         </p>
         <h1>Project Proposal</h1>
         <p>
