@@ -100,12 +100,17 @@ Optional readings:
 
 **Lecture 9 — Model Compression: Quantization, LoRA, Sparsity**
 
-Before we move to hardware, we first make the model smaller. This lecture covers three complementary compression axes that stack: quantization reduces bits per weight (FP16 → INT4), LoRA reduces trainable parameters during fine-tuning by learning low-rank weight updates that merge back at zero inference cost, and N:M sparsity zeros out weights in hardware-friendly patterns that NVIDIA's Sparse Tensor Cores accelerate at 2x throughput. The key insight is these are orthogonal — you can prune a model to 2:4 sparsity, quantize it to INT4, and add LoRA adapters for task-specific fine-tuning, compounding the compression without compounding the quality loss.
+Before we move to hardware, we first make the model smaller. This lecture covers three complementary compression axes that stack: quantization reduces bits per weight (FP16 → INT4), LoRA reduces trainable parameters during fine-tuning by learning low-rank weight updates that merge back at zero inference cost, and N:M sparsity zeros out weights in hardware-friendly patterns that NVIDIA's Sparse Tensor Cores accelerate at 2x throughput. The key insight is these are orthogonal — you can prune a model to 2:4 sparsity, quantize it to INT4, and add LoRA adapters for task-specific fine-tuning, compounding the compression without compounding the quality loss. Modern systems extend these same ideas from weights to activations and KV cache: DeepSeek-V2's Multi-Head Latent Attention (MLA) applies a low-rank joint compression to keys and values — the same low-rank intuition behind LoRA, repurposed to shrink the KV cache itself — while Palu pushes this further by decomposing the K/V projection matrices and caching only the latent representations. NSA then carries the sparsity story into attention, replacing dense attention with a hardware-aligned, natively-trainable sparse pattern that delivers real speedups on long contexts.
 
 Required readings:
 1. Frantar et al., "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers", ICLR 2023 — https://arxiv.org/abs/2210.17323
 2. Hu et al., "LoRA: Low-Rank Adaptation of Large Language Models", ICLR 2022 — https://arxiv.org/abs/2106.09685
 3. Mishra et al., "Accelerating Sparse Deep Neural Networks", 2021 — https://arxiv.org/abs/2104.08378
+
+Optional readings:
+1. DeepSeek-AI, "DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model" (MLA), 2024 — https://arxiv.org/abs/2405.04434
+2. Chang et al., "Palu: Compressing KV-Cache with Low-Rank Projection", ICLR 2025 — https://arxiv.org/abs/2407.21118
+3. Yuan et al., "Native Sparse Attention: Hardware-Aligned and Natively Trainable Sparse Attention" (NSA), 2025 — https://arxiv.org/abs/2502.11089
 
 ---
 
